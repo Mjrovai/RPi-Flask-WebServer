@@ -7,5 +7,5 @@ Flask is called a micro framework because it does not require particular tools o
 
 On this tutorial, we will use a Raspberry Pi as a local Web Server, where we will control via a simple webpage, 3 of its GPIOs programmed as outputs (acting as actuators) and monitor 2 of its GPIOs, programmed as inputs (sensors). The block diagram shows what we want to accomplish.
 <p> 
-<img src=“xxx.png” width = “700">
+<img src=“https://github.com/Mjrovai/RPi-Flask-WebServer/blob/master/Pictures/Block%20Diagram.png?raw=true”>
 </p>
