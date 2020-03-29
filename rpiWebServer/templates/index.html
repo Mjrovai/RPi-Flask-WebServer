@@ -1,37 +1,88 @@
 <!DOCTYPE html>
-   <head>
+    <head>
       <title>GPIO Control</title>
-      <link rel="stylesheet" href='../static/master.css'/>
-   </head>
+	 <link rel="stylesheet" href='../static/master.css'/>
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="icon" href="data:,"/>
+	</script>
+	<meta charset="utf-8">
+	</head>
 
    <body>
-		<h1>RPi GPIO Control</h1>
-		<h2> Sensor Status </h2>
-		<h3> BUTTON ==>  {{ button  }}</h3>
-		<h3> MOTION ==>  {{ senPIR  }}</h3>
-		<br>
+		<div class="container-fluid">
+			<div class="column">
+				<div class="col-md-12 p-3 mb-2 bg-secondary text-white">
+					<h1>RPi GPIO Control</h1>
+					<h2> Sensor Status </h2>
+					<h3> Shutter Delay {{  shutterdelay }}</h3>
+					<h3> BUTTON ==>  Pin 20 Status {{ button  }}</h3>
+					<h3> MOTION ==>  Pin 16 Status {{ senPIR  }}</h3>
+					<br>
 		
-		<h2> Actuator Status </h2>
-		<h3> RED LED ==>  {{ ledRed  }}</h3>
-		<h3> YLW LED ==>  {{ ledYlw  }}</h3>
-		<h3> GRN LED ==>  {{ ledGrn  }}</h3>
-		<br>
-		<h2> Commands </h2>
-		<h3> 
-			RED LED Ctrl ==> 
-			<a href="/ledRed/on" class="button">TURN ON</a>  
-			<a href="/ledRed/off"class="button">TURN OFF</a>
-		</h3>
-		<h3> 
-			YLW LED Ctrl ==> 
-			<a href="/ledYlw/on" class="button">TURN ON</a>  
-			<a href="/ledYlw/off"class="button">TURN OFF</a>
-		</h3>
-		<h3> 
-			GRN LED Ctrl ==> 
-			<a href="/ledGrn/on" class="button">TURN ON</a>  
-			<a href="/ledGrn/off"class="button">TURN OFF</a>
-		</h3>
+					<h2> Actuator Status </h2>
+					<h3> RED LED ==> Pin 13 Status {{ ledRed  }}</h3>
+					<h3> YLW LED ==> Pin 19  Status {{ ledYlw  }}</h3>
+					<h3> GRN LED ==> Pin 26  Status {{ ledGrn  }}</h3>					
+				</div>
+			</div>
 		
-   </body>
+		</div>
+		<div class="container-fluid">
+			<div class="column">
+		
+				<div class="col-md-12 p-3 mb-2 bg-info text-white" id="stylized">
+						<form action="/droplet" method="POST">
+							<label >Second Drop Delay</label><br>
+							<input type="number" name="btwndrops" step="0.1" min="5.0" max="15.0" value="{{ request.form['btwndrops'] }}"><br>
+							<label >Shutter Delay</label><br>
+							<input type="number" name="shutterdelay" step="0.1" min="5.0" max="40.0" value="{{ request.form['shutterdelay'] }}"><br>
+							
+							<input type="submit" value="Shutter Delay">
+							
+						</form>
+
+						{% if btwndrops %}
+							  Second Drop Delay: {{ btwndrops }} of a second.
+							{% endif %}
+						<br> 
+						{% if shutterdelay %}
+						  Shutter Delay: {{ shutterdelay }} of a second.
+						{% endif %}
+						
+<!-- 
+
+						<h3>					
+							<a href="/droplet" class="btn btn-primary btn-lg" role="button">Create Droplet</a>
+						</h3> -->
+					<h3> 
+						RED LED Ctrl ==> 
+						<a href="/ledRed/on" class="btn btn-primary" href="#" role="button">TURN ON</a>  
+						<a href="/ledRed/off" class="btn btn-secondary" href="#" role="button">TURN OFF</a>
+					</h3>
+					<h3> 
+						YLW LED Ctrl ==> 
+						<a href="/ledYlw/on" class="btn btn-primary" href="#" role="button">TURN ON</a>  
+						<a href="/ledYlw/off" class="btn btn-secondary" href="#" role="button">TURN OFF</a>
+					</h3>
+					<h3> 
+						GRN LED Ctrl ==> 
+						<a href="/ledGrn/on" class="btn btn-primary" href="#" role="button">TURN ON</a>  
+						<a href="/ledGrn/off" class="btn btn-secondary" href="#" role="button">TURN OFF</a>
+					</h3>
+					<h3>
+						Shutter Ctrl ==> 
+						<a href="/shutter/on" class="btn btn-primary" href="#" role="button">TURN ON</a>  
+						<a href="/shutter/off" class="btn btn-secondary" href="#" role="button">TURN OFF</a>
+					</h3>
+					<h3>
+						Solonoid Ctrl ==> 
+						<a href="/solonoid/on" class="btn btn-primary" href="#" role="button">TURN ON</a>  
+						<a href="/solonoid/off" class="btn btn-secondary" href="#" role="button">TURN OFF</a>
+					</h3>
+				</div>
+			</div>
+		</div>
+		
+    </body>
 </html>
