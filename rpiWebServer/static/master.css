@@ -1,7 +1,9 @@
-body {
-	background: blue;
-	color: yellow;
+/* body {
+	background: greenyellow;
+	color: red;
 }
+
+
 
 .button {
   font: bold 15px Arial;
@@ -13,4 +15,45 @@ body {
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
+} */
+
+#stylized input{
+  display: block;
+  font-size:11px;
+  padding:4px 2px;
+  border:solid 1px #aacfe4;
+  width:70px;
+  margin:2px 0 20px 10px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* shutter slider adjsutment  */
+
+.slider {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.slide {
+  width: 300px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.slides > div:target {
+  transform: scale(0.8);
 }
